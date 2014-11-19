@@ -62,7 +62,7 @@ class Template
 		require Template::getTemplateLocation($this->template, $this->style, $this->theme);
 	}
 	
-	public static function getTemplateLocation($template, $style, $theme)
+	public function getTemplateLocation($template, $style, $theme)
 	{
 		$templateLocation = "cache/$style/$template.php";
 		if (!file_exists($templateLocation) || $this->developmode)
