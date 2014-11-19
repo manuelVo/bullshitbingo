@@ -59,7 +59,7 @@ class Template
 	public function sendPage()
 	{
 		$v = $this->variables;
-		require Template::getTemplateLocation($this->template, $this->style, $this->theme);
+		require $this->getTemplateLocation($this->template, $this->style, $this->theme);
 	}
 	
 	public function getTemplateLocation($template, $style, $theme)
@@ -67,12 +67,12 @@ class Template
 		$templateLocation = "cache/$style/$template.php";
 		if (!file_exists($templateLocation) || $this->developmode)
 		{
-			Template::generateTemplate($template, $style, $theme);
+			$this->generateTemplate($template, $style, $theme);
 		}
 		return $templateLocation;
 	}
 	
-	public static function generateTemplate($template, $style, $theme)
+	public function generateTemplate($template, $style, $theme)
 	{
 		@mkdir("cache/$style", 0777, true);
 		$pattern = fopen("styles/$style/templates/$template.html", "r");
@@ -115,7 +115,7 @@ class Template
 				if (StringUtils::startsWith($command, "INCLUDE"))
 				{
 					$command = StringUtils::substringAfter($command, "INCLUDE ");
-					$templateLocation = Template::getTemplateLocation($command, $style, $theme);
+					$templateLocation = $this->getTemplateLocation($command, $style, $theme);
 					fwrite($result, "<?php require '$templateLocation';?>");
 				}
 				else if (StringUtils::startsWith($command, "IF"))
