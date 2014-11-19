@@ -11,6 +11,8 @@ class Template
 	
 	private $variables = array();
 	
+	private $developmode = false;
+	
 	public function __construct($template, $style, $theme)
 	{
 		$this->template = $template;
@@ -18,6 +20,11 @@ class Template
 		$this->theme = $theme;
 		$this->variables["THEME"] = $theme;
 		$this->variables["SCRIPTLOCATION"] = "styles/$this->style/scripts";
+	}
+	
+	public function setDevelopMode($developmode)
+	{
+		$this->developmode = $developmode;
 	}
 	
 	public function setVariable($name, $value)
@@ -58,7 +65,7 @@ class Template
 	public static function getTemplateLocation($template, $style, $theme)
 	{
 		$templateLocation = "cache/$style/$template.php";
-		if (!file_exists($templateLocation))
+		if (!file_exists($templateLocation) || $this->developmode)
 		{
 			Template::generateTemplate($template, $style, $theme);
 		}
