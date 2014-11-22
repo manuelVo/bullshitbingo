@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{PAGE_TITLE}</title>
+	<meta charset="UTF-8" />
+	<!-- FOREACH L_STYLES as STYLE -->
+		<link rel="stylesheet" type="text/css" href="{STYLE.LOCATION}" <!-- IF !empty(MEDIA) -->media="{STYLE.MEDIA}" <!-- END -->/>
+	<!-- END -->
+	<!-- FOREACH L_SCRIPTS as SCRIPTS -->
+		<script type="text/javascript" src="{SCRIPTS.LOCATION}"<!-- IF isset(SCRIPTS.PARAMS) --> {SCRIPTS.PARAMS}<!-- END -->></script>
+	<!-- END -->
+</head>
+<body>
+<header>Bullshitbingo</header>

@@ -1,0 +1,25 @@
+<!-- INCLUDE overall -->
+
+<div class="games">
+	<!-- IF !isset(GAMES) -->
+		<div class="nogames">Keine spiele vorhanden</div>
+	<!-- ELSE -->
+		<!-- FOREACH GAMES as G -->
+			<div class="game" id="game{G.ID}">{G.NAME} von {G.ADMIN}</div>
+		<!-- END -->
+	<!-- END -->
+</div>
+<div class="settings">
+	<form action="entergame.php" method="post">
+		<div class="inputs">
+			<input type="text" name="name" placeholder="Name"/>
+			<input type="text" name="gamename" placeholder="Name des Spiels"/>
+		</div>
+		<div class="buttons">
+			<a>Beitreten</a>
+			<a>Erstellen</a>
+		</div>
+	</form>
+</div>
+
+<!-- INCLUDE underall -->
