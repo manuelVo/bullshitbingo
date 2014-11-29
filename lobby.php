@@ -8,6 +8,7 @@ require_once "template.php";
 $template = new Template("lobby", "default", "default");
 
 $template->setVariable("PAGE_TITLE", "Bullshitbingo - Lobby");
+$template->addScriptFile("lobby");
 
 include "overall.php";
 

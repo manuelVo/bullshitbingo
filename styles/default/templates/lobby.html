@@ -10,14 +10,15 @@
 	<!-- END -->
 </div>
 <div class="settings">
-	<form action="entergame.php" method="post">
+	<form id="gameselection" action="joingame.php" method="post">
 		<div class="inputs">
-			<input type="text" name="name" placeholder="Name"/>
-			<input type="text" name="gamename" placeholder="Name des Spiels"/>
+			<input type="text" name="name" placeholder="Name" />
+			<input type="text" name="gamename" placeholder="Name des Spiels" />
+			<input type="number" name="size" placeholder="Größe" />
 		</div>
 		<div class="buttons">
 			<a>Beitreten</a>
-			<a>Erstellen</a>
+			<a href="javascript:createGame();">Erstellen</a>
 		</div>
 	</form>
 </div>
