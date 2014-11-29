@@ -1,5 +1,9 @@
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+CREATE TABLE assigned_words (
+  gameid int(11) NOT NULL,
+  wordid int(11) NOT NULL,
+  PRIMARY KEY (gameid,wordid),
+  KEY wordid (wordid)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE games (
   id int(11) NOT NULL AUTO_INCREMENT,
@@ -33,13 +37,16 @@ CREATE TABLE words (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
-ALTER TABLE `games`
+ALTER TABLE assigned_words
+  ADD CONSTRAINT assigned_words_ibfk_1 FOREIGN KEY (gameid) REFERENCES games (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT assigned_words_ibfk_2 FOREIGN KEY (wordid) REFERENCES words (id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE games
   ADD CONSTRAINT games_ibfk_1 FOREIGN KEY (admin) REFERENCES players (id) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE `players`
+ALTER TABLE players
   ADD CONSTRAINT players_ibfk_1 FOREIGN KEY (gameid) REFERENCES games (id) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE `solved_words`
+ALTER TABLE solved_words
   ADD CONSTRAINT solved_words_ibfk_1 FOREIGN KEY (playerid) REFERENCES players (id) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT solved_words_ibfk_2 FOREIGN KEY (wordid) REFERENCES words (id) ON DELETE CASCADE ON UPDATE CASCADE;
-
