@@ -23,9 +23,11 @@ CREATE TABLE players (
   KEY gameid (gameid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-CREATE TABLE solved_words (
+CREATE TABLE positioned_words (
   playerid int(11) NOT NULL,
   wordid int(11) NOT NULL,
+  position int(11) NOT NULL,
+  solved tinyint(1) NOT NULL,
   PRIMARY KEY (playerid,wordid),
   KEY wordid (wordid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -47,6 +49,6 @@ ALTER TABLE games
 ALTER TABLE players
   ADD CONSTRAINT players_ibfk_1 FOREIGN KEY (gameid) REFERENCES games (id) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE solved_words
-  ADD CONSTRAINT solved_words_ibfk_1 FOREIGN KEY (playerid) REFERENCES players (id) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT solved_words_ibfk_2 FOREIGN KEY (wordid) REFERENCES words (id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE positioned_words
+  ADD CONSTRAINT positioned_words_ibfk_1 FOREIGN KEY (playerid) REFERENCES players (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT positioned_words_ibfk_2 FOREIGN KEY (wordid) REFERENCES words (id) ON DELETE CASCADE ON UPDATE CASCADE;
