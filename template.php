@@ -58,6 +58,8 @@ class Template
 	
 	public function sendPage()
 	{
+		if ($this->developmode)
+			@rmdir("cache/".$this->style);
 		$v = $this->variables;
 		require $this->getTemplateLocation($this->template, $this->style, $this->theme);
 	}
@@ -65,7 +67,7 @@ class Template
 	public function getTemplateLocation($template, $style, $theme)
 	{
 		$templateLocation = "cache/$style/$template.php";
-		if (!file_exists($templateLocation) || $this->developmode)
+		if (!file_exists($templateLocation))
 		{
 			$this->generateTemplate($template, $style, $theme);
 		}
