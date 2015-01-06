@@ -1,24 +1,73 @@
-<?php
-require_once "init.php";
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
 
-require_once "config.php";
+		<title>Bullshitbingo - Lobby</title>
 
-require_once "template.php";
+		<!-- Bootstrap core CSS -->
+		<link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Bootstrap theme -->
+		<link href="bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
 
-$template = new Template("lobby", "default", "default");
+		<!-- Custom styles for this template -->
+		<link href="styles/theme.css" rel="stylesheet">
 
-$template->setVariable("PAGE_TITLE", "Bullshitbingo - Lobby");
-$template->addScriptFile("lobby");
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
 
-include "overall.php";
+	<body role="document">
 
-$mysqli = new mysqli($dbhost, $dbuser, $dbpasswd, $dbname);
-$result = $mysqli->query("SELECT g.id as id, g.name as name, p.name as admin FROM games g, players p WHERE g.admin = p.id AND g.started = 0;");
+		<!-- Fixed navbar -->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+			<div class="navbar-header">
+				<!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>-->
+				<a class="navbar-brand" href="#">Bullshitbingo</a>
+			</div>
+		</div>
+	</nav>
 
-while ($row = $result->fetch_assoc())
-{
-	$template->addLineVars("GAMES", array("ID" => $row["id"], "NAME" => $row["name"], "ADMIN" => $row["admin"]));
-}
-
-$template->sendPage();
-?>
+	<div class="container theme-showcase" role="main">
+		<div class="row">
+			<ul class="list-group" id="games">
+			</ul>
+		</div>
+		<form id="gameselection" action="joingame.php" method="post">
+		<input type="hidden" name="gameid" value="" />
+			<div class="row">
+				<input type="text" name="name" placeholder="Name" />
+				<button type="button" class="btn btn-default" id="join">Beitreten</button>
+			</div>
+			<div class="row">
+				<input type="text" name="gamename" placeholder="Name des Spiels" />
+				<input type="number" name="size" placeholder="Größe" />
+				<button type="button" class="btn btn-default" id="create">Erstellen</button>
+			</div>
+		</form>
+	</div>
+   
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="scripts/jquery-2.1.3.min.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bootstrap/assets/js/docs.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script type="text/javascript" src="scripts/lobby.js"></script>
+  </body>
+</html>

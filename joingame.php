@@ -43,7 +43,7 @@ $stmt = $mysqli->prepare("INSERT INTO players (gameid, name) VALUES (?, ?);");
 $stmt->bind_param("is", $gameid, trim(strip_tags($name)));
 $stmt->execute();
 
-$userid = $stmt->last_id;
+$userid = $stmt->insert_id;
 
 if ($mode == "create")
 {
