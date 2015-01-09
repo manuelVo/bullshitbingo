@@ -5,3 +5,7 @@ body {
 .game {
 	cursor:default;
 }
+
+.hidden {
+	display:none;
+}

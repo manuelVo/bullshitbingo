@@ -58,7 +58,7 @@ if ($mysqli->commit())
 {
 	$_SESSION["id"] = $userid;
 	$_SESSION["gameid"] = $gameid;
-	header("Location: game.php");
+	header("Location: wordcreation.php");
 }
 else
 {
