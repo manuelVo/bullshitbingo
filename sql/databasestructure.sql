@@ -27,7 +27,7 @@ CREATE TABLE positioned_words (
   playerid int(11) NOT NULL,
   wordid int(11) NOT NULL,
   position int(11) NOT NULL,
-  solved tinyint(1) NOT NULL,
+  solved tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (playerid,wordid),
   KEY wordid (wordid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
