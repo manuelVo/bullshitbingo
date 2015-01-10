@@ -9,3 +9,7 @@ body {
 .hidden {
 	display:none;
 }
+
+#grid .btn {
+	width:100%;
+}

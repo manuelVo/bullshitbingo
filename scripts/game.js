@@ -33,10 +33,12 @@ function createGrid(gamedata)
 	grid = $("#grid");
 	for (y = 0;y < gamedata.grid.length;y++)
 	{
-		row = $("<div>").addClass("row");
+		row = $("<tr>");
 		for (x = 0;x < gamedata.grid[y].length;x++)
 		{
-			row.append($("<button>").addClass("btn btn-lg btn-default").attr("id","word" + gamedata.grid[y][x].id).text(gamedata.grid[y][x].word).click(switchState));
+			cell = $("<td>").css("width", (100 / gamedata.size) + "%");
+			cell.append($("<button>").addClass("btn btn-lg btn-default").attr("id","word" + gamedata.grid[y][x].id).text(gamedata.grid[y][x].word).click(switchState));
+			row.append(cell);
 		}
 		grid.append(row);
 	}

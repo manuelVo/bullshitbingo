@@ -72,7 +72,10 @@ if (!$game["started"])
 	</nav>
 
 	<div class="container theme-showcase" role="main">
-		<div class="row" id="grid">
+		<div class="row">
+			<table id="grid">
+				
+			</table>
 		</div>
 	</div>
    
