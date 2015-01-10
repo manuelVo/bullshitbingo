@@ -1,8 +1,16 @@
 function addWord()
 {
 	word = $("#word").val();
+	if (word == "")
+		return;
 	$("#word").val("");
 	$.ajax("addword.php",{type:"POST",data:{word:word}});
+}
+
+function deleteWord(event)
+{
+	delid = $(event.target.parentNode).data("id");
+	$.ajax("deleteword.php",{type:"POST",data:{id:delid}});
 }
 
 function start()
@@ -28,7 +36,9 @@ function updateWordList()
 		words.empty();
 		for (key in result.words)
 		{
-			words.append($("<li>").addClass("list-group-item").data("id", result.words[key].id).append(result.words[key].word));
+			element = $("<li>").addClass("list-group-item").data("id", result.words[key].id).append(result.words[key].word);
+			element.append($("<span>").addClass("glyphicon glyphicon-remove removeicon").attr("aria-hidden", "true").click(deleteWord));
+			words.append(element);
 		}
 		if (result.isAdmin)
 		{

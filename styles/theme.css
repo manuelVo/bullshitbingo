@@ -13,3 +13,9 @@ body {
 #grid .btn {
 	width:100%;
 }
+
+.removeicon {
+	color:#F00;
+	float:right;
+	cursor:pointer;
+}

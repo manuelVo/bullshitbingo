@@ -5,6 +5,9 @@ require_once "config.php";
 
 if (!isset($_SESSION["gameid"]) || !isset($_POST["word"]))
 	die("no word or game");
+$_POST["word"] = trim($_POST["word"]);
+if (empty($_POST["word"]))
+	die("word empty");
 
 $mysqli = new mysqli($dbhost, $dbuser, $dbpasswd, $dbname);
 

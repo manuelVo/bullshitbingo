@@ -16,7 +16,7 @@ $row = $result->fetch_assoc();
 
 $mysqli->autocommit(false);
 
-$stmt = $mysqli->prepare("UPDATE games SET started = 1 WHERE id = ? AND admin = ? AND size * size <= ?;");
+$stmt = $mysqli->prepare("UPDATE games SET started = 1 WHERE id = ? AND admin = ? AND size * size = ?;");
 $stmt->bind_param("iii", $_SESSION["gameid"], $_SESSION["id"], $row["count"]);
 $stmt->execute();
 
